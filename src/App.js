@@ -22,7 +22,7 @@ function App() {
 
     
     let termv2 = term.substr(term.length - 11);
-    const apiKey = "AIzaSyDF-Zun-FAf-vb2GwJvAXK3KV2VOqn2G3I"
+    const apiKey = ""
     const res = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${termv2}&key=${apiKey}&part=snippet,statistics&fields=items(id,snippet,statistics)`)
     const newVideos = [...videos]
     newVideos.push({
