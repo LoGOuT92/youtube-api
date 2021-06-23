@@ -5,7 +5,7 @@ import Form from './Components/Form/Form';
 import axios from 'axios';
 
 function App() {
-
+  const apiKey = ""
   const [term, setTerm]=useState('')
   const [videos,setVideos]=useState(
     [])
@@ -21,9 +21,7 @@ function App() {
 
     
     let termv2 = term.substr(term.length - 11);
-    const apiKey = ""
     const res = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${termv2}&key=${apiKey}&part=snippet,statistics&fields=items(id,snippet,statistics)`)
-    const newVideos = [...videos]
 
     const currentdate = new Date(); 
     const datetime = currentdate.getDate() + "/"
@@ -32,7 +30,8 @@ function App() {
                     + currentdate.getHours() + ":"  
                     + currentdate.getMinutes() + ":" 
                     + currentdate.getSeconds();
-
+                    
+    const newVideos = [...videos]
     newVideos.push({
       id: termv2,
       title: res.data.items[0].snippet.title,
