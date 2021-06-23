@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+
 
 export default function Form(props) {
+
     return (
         <form onSubmit={props.onSubmit}>
             <input type="text" 
@@ -8,6 +10,9 @@ export default function Form(props) {
             onChange={props.onSearch}
             />
             <button type="submit">Dodaj</button>
+
+
+
         </form>
     )
 }

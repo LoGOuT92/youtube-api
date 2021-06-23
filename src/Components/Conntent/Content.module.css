@@ -1,6 +1,8 @@
 .video{
     border: 1px solid blue;
-    color: blue;
-    margin-bottom: 2vh;
-
+    margin: 10px;
+}
+li{
+    list-style-type:none;
+    display: inline-block;
 }

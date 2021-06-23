@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import './App.css';
 import Content from './Components/Conntent/Content';
@@ -25,12 +24,22 @@ function App() {
     const apiKey = ""
     const res = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${termv2}&key=${apiKey}&part=snippet,statistics&fields=items(id,snippet,statistics)`)
     const newVideos = [...videos]
+
+    const currentdate = new Date(); 
+    const datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + " "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+
     newVideos.push({
       id: termv2,
       title: res.data.items[0].snippet.title,
       like: res.data.items[0].statistics.likeCount,
       views: res.data.items[0].statistics.viewCount,
-      image: res.data.items[0].snippet.thumbnails.medium.url
+      image: res.data.items[0].snippet.thumbnails.medium.url,
+      dateAdd: datetime
     })
     setVideos(newVideos)
   }
