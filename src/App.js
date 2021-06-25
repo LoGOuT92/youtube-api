@@ -12,7 +12,7 @@ function App() {
   const [favorites,setFavorites]=useState([])
   const [isCheckd,setIsCheckd]=useState(false)
 
-  const apiKey = "AIzaSyDF-Zun-FAf-vb2GwJvAXK3KV2VOqn2G3I"
+  const apiKey = ""
   const baseURL = {
     base: 'https://www.googleapis.com/youtube/v3/videos?id=',
     params: '&part=snippet,statistics&fields=items(id,snippet,statistics)'
