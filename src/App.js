@@ -4,6 +4,7 @@ import Content from './Components/Conntent/Content';
 import Form from './Components/Form/Form';
 import axios from 'axios';
 import addItem from './Components/AddVideo/addVideo';
+import ApiKey from './ApiKey';
 
 function App() {
   
@@ -11,8 +12,7 @@ function App() {
   const [videos,setVideos]=useState([])
   const [favorites,setFavorites]=useState([])
   const [isCheckd,setIsCheckd]=useState(false)
-
-  const apiKey = ""
+  
   const baseURL = {
     base: 'https://www.googleapis.com/youtube/v3/videos?id=',
     params: '&part=snippet,statistics&fields=items(id,snippet,statistics)'
@@ -28,7 +28,7 @@ function App() {
     const idVideo = term.substr(term.length - 11);
 
     try{
-      const res = await axios.get(`${base}${idVideo}&key=${apiKey}${params}`)
+      const res = await axios.get(`${base}${idVideo}&key=${ApiKey}${params}`)
       setVideos(addItem(res,videos,idVideo))
       setTerm("")
       } catch (error) {
@@ -48,11 +48,9 @@ function App() {
     setVideos(newList);
   }
   function addToFav(id) {
-    const [fav] = videos.filter(x => x.id === id);
-    fav.favorites=!fav.favorites;
-    const newList = videos.filter(x => x.id !== id);
-    const nArray =[fav,...newList]
-    setVideos(nArray)
+    videos.forEach(x =>{if(x.id===id){x.favorites=!x.favorites}})
+    const newArray=[...videos]
+    setVideos(newArray)
   }
 
   useEffect(() => {
@@ -68,6 +66,7 @@ function App() {
   function clearList(){
     setVideos([])
   }
+
 
   return (
     <div className="App">
