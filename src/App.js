@@ -4,7 +4,7 @@ import Content from './Components/Conntent/Content';
 import Form from './Components/Form/Form';
 import axios from 'axios';
 import addItem from './Components/AddVideo/addVideo';
-import ApiKey from './ApiKey';
+import apiKey from './ApiKey';
 
 function App() {
   
@@ -12,7 +12,7 @@ function App() {
   const [videos,setVideos]=useState([])
   const [favorites,setFavorites]=useState([])
   const [isCheckd,setIsCheckd]=useState(false)
-  
+
   const baseURL = {
     base: 'https://www.googleapis.com/youtube/v3/videos?id=',
     params: '&part=snippet,statistics&fields=items(id,snippet,statistics)'
@@ -28,7 +28,7 @@ function App() {
     const idVideo = term.substr(term.length - 11);
 
     try{
-      const res = await axios.get(`${base}${idVideo}&key=${ApiKey}${params}`)
+      const res = await axios.get(`${base}${idVideo}&key=${apiKey}${params}`)
       setVideos(addItem(res,videos,idVideo))
       setTerm("")
       } catch (error) {
